@@ -34,32 +34,28 @@ export const signIn = async ({ email, password }: signInProps) => {
 }
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
-    const { email, firstName, lastName } = userData
-
     let newUserAccount;
 
     try {
-        const { account, database } = await createAdminClient();
-
+        // create appwrite user
+        const { database, account } = await createAdminClient();
         newUserAccount = await account.create(
             ID.unique(),
-            email,
+            userData.email,
             password,
-            `${firstName} ${lastName}`
+            `${userData.firstName} ${userData.lastName}`
         );
 
-        if (!newUserAccount) throw new Error('Error creating user')
+        if (!newUserAccount) throw new Error("Error creating user");
 
+        // create dwolla customer
         const dwollaCustomerUrl = await createDwollaCustomer({
             ...userData,
-            type: 'personal'
-        })
+            type: "personal",
+        });
 
-        if (!dwollaCustomerUrl) {
-            throw new Error('Error creating dwolla customer')
-        }
-
-        const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl)
+        if (!dwollaCustomerUrl) throw new Error("Error creating dwolla customer");
+        const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 
         const newUser = await database.createDocument(
             DATABASE_ID!,
@@ -68,12 +64,15 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
             {
                 ...userData,
                 userId: newUserAccount.$id,
+                dwollaCustomerUrl,
                 dwollaCustomerId,
-                dwollaCustomerUrl
             }
-        )
+        );
 
-        const session = await account.createEmailPasswordSession(email, password);
+        const session = await account.createEmailPasswordSession(
+            userData.email,
+            password
+        );
 
         cookies().set("appwrite-session", session.secret, {
             path: "/",
@@ -81,11 +80,12 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
             sameSite: "strict",
             secure: true,
         });
-        return parseStringify(newUser)
+
+        return parseStringify(newUser);
     } catch (error) {
-        console.log(error)
+        console.error("Error", error);
     }
-}
+};
 
 // ... your initilization functions
 
@@ -136,12 +136,12 @@ export const createLinkToken = async (user: User) => {
 
 
 export const createBankAccount = async ({
-    accessToken,
     userId,
-    accountId,
     bankId,
+    accountId,
+    accessToken,
     fundingSourceUrl,
-    sharableId,
+    shareableId,
 }: createBankAccountProps) => {
     try {
         const { database } = await createAdminClient();
@@ -151,21 +151,20 @@ export const createBankAccount = async ({
             BANK_COLLECTION_ID!,
             ID.unique(),
             {
-                accessToken,
                 userId,
-                accountId,
                 bankId,
+                accountId,
+                accessToken,
                 fundingSourceUrl,
-                sharableId,
+                shareableId,
             }
-        );
+        )
 
         return parseStringify(bankAccount);
     } catch (error) {
-        console.error("Error", error);
-        return null;
+        console.log(error);
     }
-};
+}
 
 
 // This function exchanges a public token for an access token and item ID
@@ -217,7 +216,7 @@ export const exchangePublicToken = async ({
             accountId: accountData.account_id,
             accessToken,
             fundingSourceUrl,
-            sharableId: encryptId(accountData.account_id),
+            shareableId: encryptId(accountData.account_id),
         });
 
         // Revalidate the path to reflect the changes

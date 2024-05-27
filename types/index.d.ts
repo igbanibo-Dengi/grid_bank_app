@@ -89,7 +89,7 @@ declare type Bank = {
   accessToken: string;
   fundingSourceUrl: string;
   userId: string;
-  sharableId: string;
+  shareableId: string;
 };
 
 declare type AccountTypes =
@@ -140,6 +140,8 @@ declare type NewDwollaCustomerParams = {
 declare interface CreditCardProps {
   account: Account;
   userName: string;
+  firstName: string;
+  lastName: string;
   showBalance?: boolean;
 }
 

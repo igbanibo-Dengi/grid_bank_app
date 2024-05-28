@@ -26,7 +26,7 @@ export default async function RootLayout({
                         src='/icons/logo.svg'
                         width={30}
                         height={30}
-                        alt='Grid logo'
+                        alt='Gringotts logo'
                     />
                     <div>
                         <MobileNav user={loggedIn} />

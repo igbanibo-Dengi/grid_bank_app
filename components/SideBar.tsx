@@ -24,10 +24,10 @@ const SideBar = ({ user }: SiderbarProps) => {
                         src="/icons/logo.svg"
                         width={34}
                         height={34}
-                        alt='Grid logo'
+                        alt='Gringotts logo'
                         className='size-[24px] max-xl:size-14 '
                     />
-                    <h1 className='sidebar-logo'>Grid</h1>
+                    <h1 className='sidebar-logo'>Gringotts</h1>
                 </Link>
                 {sidebarLinks.map((item) => {
                     const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`)

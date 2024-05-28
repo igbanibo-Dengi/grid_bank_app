@@ -14,7 +14,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "Grid",
+  title: "Gringotts",
   description: "Bank of tomorow",
   icons: {
     icon: '/icons/logo.svg'

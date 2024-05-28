@@ -96,10 +96,10 @@ const AuthForm = ({ type }: { type: string }) => {
                         src="/icons/logo.svg"
                         width={34}
                         height={34}
-                        alt='Grid logo'
+                        alt='Gringotts logo'
                         className='size-[24px] max-xl:size-14 '
                     />
-                    <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>Grid</h1>
+                    <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>Gringotts</h1>
                 </Link>
                 <div className='flex flex-col gap1 md:gap-3'>
                     <h1 className='text-24 lg:text-36 font-semibold text-gray-900'>

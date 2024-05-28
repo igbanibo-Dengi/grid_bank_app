@@ -90,7 +90,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                 if (newTransaction) {
                     toast({
                         title: "Transfer processing",
-                        description: "You are being redircted to transfer history.",
+                        description: "You are being redircted to the home page.",
                         action: <CircleCheckBig size={40} color="#04f000" />
                     })
                     form.reset();

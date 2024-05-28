@@ -16,10 +16,11 @@ export default async function RootLayout({
             <div className="auth-asset">
                 <div>
                     <Image
-                        src='/icons/auth-image.svg'
+                        src='/auth-image.png'
                         alt="auth-image"
-                        width={500}
-                        height={500}
+                        width={800}
+                        height={800}
+                        className="border-4 border-black-2 rounded-xl"
                     />
                 </div>
             </div>

@@ -28,6 +28,7 @@ import { Textarea } from "./ui/textarea";
 import { createTransaction } from "@/lib/actions/transactions.actions";
 import { BankDropdown } from "./BankDropdown";
 import { useToast } from "@/components/ui/use-toast"
+import Link from "next/link";
 
 
 const formSchema = z.object({
@@ -195,7 +196,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                     name="email"
                     render={({ field }) => (
                         <FormItem className="border-t border-gray-200">
-                            <div className="payment-transfer_form-item py-5">
+                            <div className="payment-transfer_form-item items-center py-5">
                                 <FormLabel className="text-14 w-full max-w-[280px] font-medium text-gray-700">
                                     Recipient&apos;s Email Address
                                 </FormLabel>
@@ -220,9 +221,14 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                     render={({ field }) => (
                         <FormItem className="border-t border-gray-200">
                             <div className="payment-transfer_form-item pb-5 pt-6">
-                                <FormLabel className="text-14 w-full max-w-[280px] font-medium text-gray-700">
-                                    Receiver&apos;s Plaid Sharable Id
-                                </FormLabel>
+                                <div className="payment-transfer_form-content">
+                                    <FormLabel className="text-14 w-full max-w-[280px] font-medium text-gray-700">
+                                        Receiver&apos;s Plaid Sharable Id
+                                    </FormLabel>
+                                    <FormDescription className="text-12 font-normal text-gray-600">
+                                        Check<Link href="my-banks" className=" text-blue-600">My Banks</Link> for your Plaid Sharable Id
+                                    </FormDescription>
+                                </div>
                                 <div className="flex w-full flex-col">
                                     <FormControl>
                                         <Input
@@ -243,7 +249,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
                     name="amount"
                     render={({ field }) => (
                         <FormItem className="border-y border-gray-200">
-                            <div className="payment-transfer_form-item py-5">
+                            <div className="payment-transfer_form-item items-center py-5">
                                 <FormLabel className="text-14 w-full max-w-[280px] font-medium text-gray-700">
                                     Amount
                                 </FormLabel>

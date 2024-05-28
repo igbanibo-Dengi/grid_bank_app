@@ -11,10 +11,12 @@ import CustomInput from './CustomInput'
 import { Form } from './ui/form'
 
 import { authFormSchema } from '@/lib/utils'
-import { Loader2 } from 'lucide-react'
+import { CircleOff, CircleX, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 import PlaidLink from './PlaidLink'
+import { useToast } from './ui/use-toast'
+import { ToastAction } from './ui/toast'
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -22,6 +24,7 @@ const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
+    const { toast } = useToast()
     const formSchema = authFormSchema(type);
 
 
@@ -35,7 +38,7 @@ const AuthForm = ({ type }: { type: string }) => {
     })
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        console.log(data)
+        // console.log(data)
         setIsLoading(true)
 
         const userData = {
@@ -69,7 +72,12 @@ const AuthForm = ({ type }: { type: string }) => {
 
         } catch (error) {
             console.log(error);
-
+            toast({
+                variant: "destructive",
+                title: "Invalid credentials",
+                description: "Please check your email an password.",
+                action: <CircleOff color="#f00000" size={40} />
+            })
         } finally {
             setIsLoading(false)
         }
@@ -211,7 +219,7 @@ const AuthForm = ({ type }: { type: string }) => {
                             </div>
                         </form>
                     </Form>
-                    <footer className='flex justify-center gap-1'>
+                    <footer className='flex items-center justify-center gap-1'>
                         <p className='text-14 font-normal text-gray-600'>{type === 'sign-in' ?
                             "Don't have an account ?" : "Already have an account?"
                         }</p>

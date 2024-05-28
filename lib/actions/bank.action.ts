@@ -218,9 +218,13 @@ export const createTransfer = async () => {
         const transfer = responseCreateResponse.data.transfer;
         return parseStringify(transfer);
     } catch (error) {
+
+        console.log(error);
+
         console.error(
             "An error occurred while creating transfer authorization:",
             error
         );
     }
+
 };

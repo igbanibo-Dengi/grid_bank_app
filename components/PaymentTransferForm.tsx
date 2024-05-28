@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
+import { CircleCheckBig, CircleOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -88,18 +88,32 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 
                 if (newTransaction) {
                     toast({
-                        description: "Your message has been sent.",
+                        title: "Transfer processing",
+                        description: "You are being redircted to transfer history.",
+                        action: <CircleCheckBig size={40} color="#04f000" />
                     })
                     form.reset();
                     router.push("/");
                 }
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Submitting create transfer request failed: ", error);
-            toast({
-                title: "Uh oh! Something went wrong.",
-                description: "There was a problem with your request.",
-            })
+            console.log(error.message);
+            if (error.message === 'Cannot read properties of null (reading \'fundingSourceUrl\')') {
+                toast({
+                    title: "Invalid Plaid Shareable Id",
+                    description: "verify your credentials.",
+                    action: <CircleOff color="#f00000" size={40} />
+                })
+            }
+
+            if (error.message === 'ValidationError') {
+                toast({
+                    title: "Invalid Credentials",
+                    description: "verify Receiver's Plaid Sharable Id.",
+                    action: <CircleOff color="#f00000" size={40} />
+                })
+            }
         }
 
         setIsLoading(false);

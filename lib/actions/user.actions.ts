@@ -49,8 +49,10 @@ export const signIn = async ({ email, password }: signInProps) => {
         const user = await getUserInfo({ userId: session.userId })
 
         return parseStringify(user);
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        const errorMessage = error.response.message
+        console.log("Error:", errorMessage);
+        throw new Error(errorMessage)
     }
 }
 

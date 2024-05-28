@@ -1,6 +1,7 @@
 "use server";
 
 import { Client } from "dwolla-v2";
+import { parseStringify } from "../utils";
 
 const getEnvironment = (): "production" | "sandbox" => {
   const environment = process.env.DWOLLA_ENV as string;
@@ -86,8 +87,14 @@ export const createTransfer = async ({
     return await dwollaClient
       .post("transfers", requestBody)
       .then((res) => res.headers.get("location"));
-  } catch (err) {
-    console.error("Transfer fund failed: ", err);
+  } catch (error: any) {
+    console.error("Transfer fund failed: ", error);
+
+    const errorMessage = error.body
+    const newError = parseStringify(errorMessage)
+    console.log(newError.code);
+
+    throw new Error(newError.code)
   }
 };
 
@@ -112,3 +119,8 @@ export const addFundingSource = async ({
     console.error("Transfer fund failed: ", err);
   }
 };
+
+
+
+
+

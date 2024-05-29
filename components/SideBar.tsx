@@ -14,7 +14,7 @@ const SideBar = ({ user }: SiderbarProps) => {
     const pathname = usePathname();
 
     return (
-        <section className='sidebar'>
+        <section className='p-5 flex flex-col justify-between border-r-2 w-[300px]'>
             <nav className='flex flex-col gap-4'>
                 <Link
                     href="/"
@@ -33,7 +33,7 @@ const SideBar = ({ user }: SiderbarProps) => {
                     const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`)
                     return (
                         <Link href={item.route} key={item.label}
-                            className={cn('sidebar-link', { 'bg-bank-gradient': isActive })}
+                            className={cn('text-sm font font-semibold p-3 rounded-md flex gap-3 items-center', { 'bg-bank-gradient': isActive })}
                         >
                             <div className='relative size-6'>
                                 <Image

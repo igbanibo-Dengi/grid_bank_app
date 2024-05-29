@@ -18,8 +18,8 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
     const account = await getAccount({ appwriteItemId })
 
     return (
-        <section className="home">
-            <div className='home-content'>
+        <section className=" no-scrollbar flex w-full flex-row">
+            <div className='no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll'>
                 <header className='home-heaer'>
                     <HeaderBox
                         type="greeting"

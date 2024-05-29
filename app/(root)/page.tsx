@@ -18,9 +18,9 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
     const account = await getAccount({ appwriteItemId })
 
     return (
-        <section className=" no-scrollbar flex w-full flex-row">
+        <section className=" no-scrollbar flex flex-col">
             <div className='no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll'>
-                <header className='home-heaer'>
+                <header className='home-header'>
                     <HeaderBox
                         type="greeting"
                         title="Welome"
@@ -33,19 +33,19 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
                         totalCurrentBalance={accounts?.totalCurrentBalance}
                     />
                 </header>
+                <RightSideBar
+                    user={loggedIn}
+                    transactions={account?.transactions}
+                    banks={accountsData?.slice(0, 2)}
+                />
                 <RecentTransactions
                     accounts={accountsData}
                     transactions={account?.transactions}
                     appwriteItemId={appwriteItemId}
                     page={currentpage}
                 />
-
             </div>
-            <RightSideBar
-                user={loggedIn}
-                transactions={account?.transactions}
-                banks={accountsData?.slice(0, 2)}
-            />
+
         </section>
     )
 }

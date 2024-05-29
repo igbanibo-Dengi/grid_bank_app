@@ -14,7 +14,7 @@ const SideBar = ({ user }: SiderbarProps) => {
     const pathname = usePathname();
 
     return (
-        <section className='p-5 flex flex-col justify-between border-r-2 w-[300px]'>
+        <section className='sidebar'>
             <nav className='flex flex-col gap-4'>
                 <Link
                     href="/"

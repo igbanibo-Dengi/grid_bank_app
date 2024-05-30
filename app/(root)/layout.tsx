@@ -1,3 +1,4 @@
+import HeaderBox from "@/components/HeaderBox";
 import MobileNav from "@/components/MobileNav";
 import SideBar from "@/components/SideBar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -18,7 +19,7 @@ export default async function RootLayout({
 
 
     return (
-        <main className="flex h-screen w-full font-inter">
+        <main className="flex h-screen w-full font-inter no-scrollbar">
             <SideBar user={loggedIn} />
             <div className="flex size-full flex-col">
                 <div className="root-layout">
@@ -32,7 +33,17 @@ export default async function RootLayout({
                         <MobileNav user={loggedIn} />
                     </div>
                 </div>
-                {children}
+                <div className="h-screen no-scrollbar overflow-y-scroll flex flex-col bg-[#F4F7FA] " >
+                    <HeaderBox
+                        type="greeting"
+                        title="Welome"
+                        user={loggedIn?.firstName || 'Guest'}
+                        subtext="Acess and manage your account and transactions efficiently"
+                    />
+                    <div className="no-scrollbar overflow-y-scroll rounded-tl-3xl">
+                        {children}
+                    </div>
+                </div>
             </div>
         </main>
     );

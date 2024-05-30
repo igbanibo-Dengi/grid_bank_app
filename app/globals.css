@@ -209,7 +209,7 @@
   }
 
   .header-box {
-    @apply flex flex-col gap-1;
+    @apply flex flex-col gap-1 bg-[#F4F7FA] p-5;
   }
 
   .header-box-title {
@@ -365,7 +365,7 @@
 
   /* Sidebar */
   .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between border-r border-gray-200 bg-white pt-8 text-white max-xl:hidden sm:p-4 xl:p-6 2xl:w-[355px];
+    @apply sticky left-0 top-0 flex h-screen w-fit flex-col  justify-between bg-[#F4F7FA] pt-8 text-white max-xl:hidden sm:p-4 xl:p-6 2xl:w-[355px];
   }
 
   .sidebar-logo {

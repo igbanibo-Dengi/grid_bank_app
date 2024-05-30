@@ -11,7 +11,7 @@ const MyBanks = async () => {
     })
 
     return (
-        <section className='flex'>
+        <div className='flex rounded-tl-3xl bg-white'>
             <div className="my-banks">
                 <HeaderBox
                     title="My Bank Accounts"
@@ -35,7 +35,7 @@ const MyBanks = async () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 

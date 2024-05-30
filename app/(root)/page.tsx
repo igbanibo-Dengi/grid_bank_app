@@ -1,4 +1,3 @@
-import HeaderBox from '@/components/HeaderBox'
 import RecentTransactions from '@/components/RecentTransactions';
 import RightSideBar from '@/components/RightSideBar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
@@ -18,21 +17,15 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
     const account = await getAccount({ appwriteItemId })
 
     return (
-        <section className=" no-scrollbar flex flex-col">
-            <div className='no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll'>
-                <header className='home-header'>
-                    <HeaderBox
-                        type="greeting"
-                        title="Welome"
-                        user={loggedIn?.firstName || 'Guest'}
-                        subtext="Acess and manage your account and transactions efficiently"
-                    />
+        <section className='bg-white'>
+            <div className=" no-scrollbar flex flex-col bg-white overflow-y-scroll p-5 lg:p-10 h-full rounded-tl-3xl">
+                <div className='home-header'>
                     <TotalBalanceBox
                         accounts={accountsData}
                         totalBanks={accounts?.totalBanks}
                         totalCurrentBalance={accounts?.totalCurrentBalance}
                     />
-                </header>
+                </div>
                 <RightSideBar
                     user={loggedIn}
                     transactions={account?.transactions}
@@ -45,7 +38,6 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
                     page={currentpage}
                 />
             </div>
-
         </section>
     )
 }

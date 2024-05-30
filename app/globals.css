@@ -209,7 +209,7 @@
   }
 
   .header-box {
-    @apply flex flex-col gap-1 bg-[#F4F7FA] p-5;
+    @apply flex-col gap-1 bg-[#F4F7FA] p-5 hidden xl:flex;
   }
 
   .header-box-title {

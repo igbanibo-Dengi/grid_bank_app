@@ -13,10 +13,9 @@ import { Form } from './ui/form'
 import { authFormSchema } from '@/lib/utils'
 import { CircleOff, CircleX, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
+import { signIn, signUp } from '@/lib/actions/user.actions'
 import PlaidLink from './PlaidLink'
 import { useToast } from './ui/use-toast'
-import { ToastAction } from './ui/toast'
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -38,7 +37,7 @@ const AuthForm = ({ type }: { type: string }) => {
     })
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        // console.log(data)
+        console.log(data)
         setIsLoading(true)
 
         const userData = {
@@ -162,14 +161,14 @@ const AuthForm = ({ type }: { type: string }) => {
                                             name="state"
                                             label="State"
                                             type="text"
-                                            placeholder="Example: Rivers state"
+                                            placeholder="Example: NY"
                                         />
                                         <CustomInput
                                             control={form.control}
                                             name="postalCode"
                                             label="Postal Codde"
                                             type="text"
-                                            placeholder="Example: 111022"
+                                            placeholder="Example: 11102"
                                         />
                                     </div>
                                     <div className='flex gap-4'>
@@ -178,14 +177,14 @@ const AuthForm = ({ type }: { type: string }) => {
                                             name="dateOfBirth"
                                             label="Date of birth"
                                             type="text"
-                                            placeholder="dd-mm-yyyy"
+                                            placeholder="YYYY-MM-DD"
                                         />
                                         <CustomInput
                                             control={form.control}
                                             name="ssn"
                                             label="SSN"
                                             type="text"
-                                            placeholder="Example: 1234"
+                                            placeholder="XXX-XX-XXXX"
                                         />
                                     </div>
                                 </>

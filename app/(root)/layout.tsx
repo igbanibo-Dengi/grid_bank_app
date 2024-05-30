@@ -35,9 +35,9 @@ export default async function RootLayout({
                 </div>
                 <div className="h-screen no-scrollbar overflow-y-scroll flex flex-col bg-[#F4F7FA] " >
                     <HeaderBox
-                    // type="greeting"
-                    // title="Welome"
-                    // user={loggedIn?.firstName || 'Guest'}
+                        // type="greeting"
+                        // title="Welome"
+                        user={loggedIn?.firstName || 'Guest'}
                     // subtext="Acess and manage your account and transactions efficiently"
                     />
                     <div className="no-scrollbar overflow-y-scroll rounded-tl-3xl">

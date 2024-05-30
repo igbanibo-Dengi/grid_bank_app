@@ -38,7 +38,7 @@ const RightSideBar = ({ user, transactions, banks }: RightSidebarProps) => {
                     </div>
                 )}
 
-                <div className="flex flex-1 flex-col gap-6 w-full xl:w-2/3">
+                <div className="flex flex-1 flex-col gap-6 w-full xl:w-2/3 mt-10 mb-20">
                     <h2 className="header-2">Top categories</h2>
 
                     <div className='space-y-5'>

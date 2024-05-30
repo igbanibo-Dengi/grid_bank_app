@@ -1,5 +1,5 @@
 import BankCard from '@/components/BankCard';
-import HeaderBox from '@/components/HeaderBox'
+import ConnectCard from '@/components/ConnectCard';
 import { getAccounts } from '@/lib/actions/bank.action';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import React from 'react'
@@ -10,14 +10,13 @@ const MyBanks = async () => {
         userId: loggedIn.$id
     })
 
+
+    // const loggedIn = await getLoggedInUser();
+
+
     return (
         <div className='flex rounded-tl-3xl bg-white'>
             <div className="my-banks">
-                <HeaderBox
-                    title="My Bank Accounts"
-                    subtext="Effortlessly manage your banking activites."
-                />
-
                 <div className="space-y-4">
                     <h2 className="header-2">
                         Your cards
@@ -32,6 +31,7 @@ const MyBanks = async () => {
                                 lastName={loggedIn?.lastName}
                             />
                         ))}
+                        <ConnectCard user={loggedIn} />
                     </div>
                 </div>
             </div>

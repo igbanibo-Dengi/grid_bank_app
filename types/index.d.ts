@@ -152,9 +152,9 @@ declare interface BankInfoProps {
 }
 
 declare interface HeaderBoxProps {
-  type?: "title" | "greeting";
-  title: string;
-  subtext: string;
+  // type?: "title" | "greeting";
+  // title: string;
+  // subtext: string;
   user?: string;
 }
 
@@ -179,6 +179,10 @@ declare interface PlaidLinkProps {
   user: User;
   variant?: "primary" | "ghost";
   dwollaCustomerId?: string;
+}
+
+declare interface ConnetCardProps {
+  user: User
 }
 
 // declare type User = sdk.Models.Document & {

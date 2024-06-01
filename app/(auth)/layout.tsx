@@ -8,7 +8,7 @@ export default async function RootLayout({
 }>) {
 
     return (
-        <main className="flex min-h-screen justify-between font-inter">
+        <main className="flex min-h-screen justify-between font-inter overflow-hidden">
             {children}
             <div className="auth-asset">
                 <div>

@@ -40,10 +40,10 @@ const MobileNav = ({ user }: MobileNavProps) => {
                             src="/icons/logo.svg"
                             width={34}
                             height={34}
-                            alt='Gringotts logo'
+                            alt='Grid Wallet logo'
                             className='size-[24px] max-xl:size-14 '
                         />
-                        <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>Gringotts</h1>
+                        <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>Grid Wallet</h1>
                     </Link>
                     <div className='mobilenav-sheet pb-10'>
                         <SheetClose asChild>
